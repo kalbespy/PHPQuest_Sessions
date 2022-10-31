@@ -7,11 +7,14 @@
     <title>The Cookie Factory</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/styles.css"/>
 </head>
 <body>
+    <?php 
+    session_start();
+    ?>
 <header>
     <!-- MENU ENTETE -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -34,9 +37,33 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Chocolates chips</a></li>
-                    <li><a href="#">Nuts</a></li>
-                    <li><a href="#">Gluten full</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="
+                        <?php 
+                            if (!isset($_SESSION['loginname']) || empty($_SESSION['loginname'])) 
+                            {
+                                echo 'login.php';
+                            } else {
+                                echo 'chocolat.php';
+                            }
+                        ?>">Chocolates chips</a></li>
+                    <li><a href="<?php 
+                            if (!isset($_SESSION['loginname']) || empty($_SESSION['loginname'])) 
+                            {
+                                echo 'login.php';
+                            } else {
+                                echo 'nuts.php';
+                            }
+                        ?>">Nuts</a></li>
+                    <li><a href="<?php 
+                            if (!isset($_SESSION['loginname']) || empty($_SESSION['loginname'])) 
+                            {
+                                echo 'login.php';
+                            } else {
+                                echo 'gluten.php';
+                            }
+                        ?>">Gluten full</a></li>
                     <li>
                         <a href="/cart.php" class="btn btn-warning navbar-btn">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
@@ -48,6 +75,14 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+        <strong>Hello 
+            <?php 
+                if (!isset($_SESSION['loginname']) || empty($_SESSION['loginname'])) 
+                {
+                    echo 'Wilder';
+                } else {
+                    echo ($_SESSION['loginname']);
+                }        
+            ?> !</strong>
     </div>
 </header>
