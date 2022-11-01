@@ -4,7 +4,6 @@
             if (!isset($_SESSION['loginname'])) {
                 header('Location: cart.php');
             } else {
-                echo'teub';
                 $product = $_GET['add_to_cart'];
                 $added = $catalog[$product]['name'];    
                 $_SESSION['name_product'][] = $added;
